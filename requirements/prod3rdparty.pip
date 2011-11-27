@@ -1,0 +1,23 @@
+# Installs all needed 3rd party modules
+
+Django==1.3.2
+
+# Non-standard signals
+django-signals-ahoy
+
+# Database migrations
+# fab migrate / fab south
+South
+
+# Features switching
+#django-waffle
+
+#django-projector
+
+# Tagging
+#django-tagging
+
+# REST API
+#django-piston
+
+# CMS
