@@ -1,5 +1,6 @@
 # settings for the jsFiddle
 import os
+import django.conf.global_settings as DEFAULT_SETTINGS
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)
@@ -15,6 +16,8 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 DATABASES = {
     'default': {
@@ -81,20 +84,14 @@ MEDIA_URL = ''
 
 STATIC_ROOT = path('static')
 STATIC_URL = '/static/'
+STATICFILES_FINDERS = DEFAULT_SETTINGS.STATICFILES_FINDERS + (
+    'compressor.finders.CompressorFinder',
+)
+
 
 # Nose tests
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 SOUTH_TESTS_MIGRATE = False
-
-# Django toolbar configuration
-DEBUG_TOOLBAR_CONFIG = {
-    # change to True needed if debugging creation of Add-ons
-    'INTERCEPT_REDIRECTS': False,
-}
-
-# Switch on debug_toolbar for these IPs
-INTERNAL_IPS = ('127.0.0.1',)
-
 
 LOGGING = {
     'version': 1,
@@ -143,7 +140,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'tolwod': {
+        'cms': {
             'propagate': True,
             'handlers': ['console', 'syslog'],  # , 'mail_admins'],
             'level': 'INFO',
@@ -160,7 +157,7 @@ LOGGING = {
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'xe!-&$_&3%qahmtmt&+w)2$z8d!jul8@*_b86*qi0kcpx4hp+u'
+SECRET_KEY = 'Secret Key'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -169,16 +166,21 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-#TEMPLATE_CONTEXT_PROCESSORS = (
-#    'django.contrib.messages.context_processors.messages',)
-#
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
+    'fiber.context_processors.page_info',
+)
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # django-fiber
+    'fiber.middleware.ObfuscateEmailAddressMiddleware',
+    'fiber.middleware.AdminPageMiddleware',
+    'fiber.middleware.PageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'urls'
@@ -200,9 +202,11 @@ INSTALLED_APPS = [
     'south',
     # DEV
     'django_nose',
-    'debug_toolbar',
-    'lettuce.django',
     # CMS APPS
+    'piston',
+    'mptt',
+    'compressor',
+    'fiber',
     # Admin
     'django.contrib.admin',
     'django.contrib.admindocs',
@@ -210,13 +214,8 @@ INSTALLED_APPS = [
 
 DEV_APPS = (
     'django_nose',
-    'debug_toolbar',
-    'lettuce.django',
 )
 # Which from above Middleware classes should be removed if in PRODUCTION
-DEV_MIDDLEWARE_CLASSES = (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
 
 
 # Fiddle settings

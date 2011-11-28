@@ -36,7 +36,7 @@ MAIN_DIR = {
 # Projectname defaults to lowercase main directory name
 PROJECT_NAME = MAIN_DIR['local'].split('/')[-1].lower()
 
-# Virtual environment name default to PROJECT_NAME
+# Virtual environment name default to current PROJECT_NAME
 VIRTUALENV = {
         'local': PROJECT_NAME,
         'production': PROJECT_NAME}

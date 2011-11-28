@@ -21,3 +21,12 @@ South
 #django-piston
 
 # CMS
+django-fiber
+PIL
+django-piston
+django-mptt
+django-compressor
+django-appconf
+
+#lxml
+BeautifulSoup
