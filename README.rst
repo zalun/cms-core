@@ -8,4 +8,4 @@ main directory with this Django project
 
 License
 -------
-MIT
+Mozilla Public License

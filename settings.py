@@ -143,7 +143,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'jsf': {
+        'tolwod': {
             'propagate': True,
             'handlers': ['console', 'syslog'],  # , 'mail_admins'],
             'level': 'INFO',
@@ -160,7 +160,7 @@ LOGGING = {
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'xe!+&$_&3%qahmtmt&+w)2$z8d!jul8@*_b86*qi0kcpx4hp+u'
+SECRET_KEY = 'xe!-&$_&3%qahmtmt&+w)2$z8d!jul8@*_b86*qi0kcpx4hp+u'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -202,14 +202,7 @@ INSTALLED_APPS = [
     'django_nose',
     'debug_toolbar',
     'lettuce.django',
-    # jsFiddle APPS
-    'base',
-    'document',
-    'source',
-    'fiddle',
-    'registration',
-    'person',
-    'library',
+    # CMS APPS
     # Admin
     'django.contrib.admin',
     'django.contrib.admindocs',
