@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.defaults import url, include, patterns
 from django.contrib import admin
 #from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-#from django.views import static
+from django.views import static
 
 admin.autodiscover()
 
@@ -21,3 +21,6 @@ if settings.DEBUG:
     urlpatterns += patterns('django.contrib.staticfiles.views',
         url(r'^static/(?P<path>.*)$', 'serve'),
     )
+    urlpatterns += patterns('',
+        url(r'^uploads/(?P<path>.*)$', static.serve,
+            {'document_root': settings.UPLOADS_ROOT}, name='media'),)

@@ -69,6 +69,7 @@ MEDIA_ROOTS = ()
 # This shouldn't be used in production. Configure WebServer to serve these
 # directly from the filesystem
 MEDIA_ROOT = path('media')
+UPLOADS_ROOT = path('media/uploads')
 
 # Place media needed to be used from apps in their media directories
 APP_MEDIA_PREFIX = path('apps')
