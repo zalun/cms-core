@@ -22,5 +22,5 @@ if settings.DEBUG:
         url(r'^static/(?P<path>.*)$', 'serve'),
     )
     urlpatterns += patterns('',
-        url(r'^uploads/(?P<path>.*)$', static.serve,
+        url(r'uploads/(?P<path>.*)$', static.serve,
             {'document_root': settings.UPLOADS_ROOT}, name='media'),)
