@@ -3,7 +3,7 @@ import os
 # jsFiddle generic pplications
 APPS = []
 ALLAPPS = APPS[:]
-ALLAPPS.extend(["base", "registration", "person"])
+#ALLAPPS.extend(["base", "registration", "person"])
 
 PROJECT_DEV = 0         # edit all apps
 PROJECT_PRODUCTION = 1  # do not edit

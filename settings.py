@@ -204,6 +204,7 @@ INSTALLED_APPS = [
     # DEV
     'django_nose',
     # CMS APPS
+    'base',
     'piston',
     'mptt',
     'compressor',
