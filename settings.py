@@ -201,6 +201,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south',
+    #server
+    'gunicorn',
     # DEV
     'django_nose',
     # CMS APPS

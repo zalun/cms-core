@@ -3,7 +3,14 @@ import os
 import sys
 import site
 
+try:
+    import env_local
+except:
+    pass
+
 from django.core.management import execute_manager, setup_environ
+
+import piston
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)
