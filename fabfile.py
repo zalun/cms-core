@@ -1,17 +1,24 @@
 import os
+import site
 
 from fabric.api import env, lcd, local, settings  # cd, sudo, run,
-from fabric.colors import green as _green, cyan as _cyan
+from fabric.colors import red as _red, green as _green, cyan as _cyan
 from fabric.contrib.console import confirm
 
 from fab_helpers import ve_local as _ve_local  # ve_run as _ve_run
+
+# allow to look for modules in directory above
+ROOT = os.path.dirname(os.path.abspath(__file__))
+path = lambda *a: os.path.join(ROOT, *a)
+site.addsitedir(path('../'))
 
 # load fab_settings_local.py which is not shared
 try:
     import fab_settings_local as sett
 except ImportError:
+    print _red("\r\nFabric is using default settings!\r\n")
     try:
-        import fab_settings as settings
+        import fab_settings as sett
     except:
         print "Bazinga! no fab_settings.py or an error in import"
         raise
