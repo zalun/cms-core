@@ -1,6 +1,7 @@
 # Installs all needed 3rd party modules
 
 Django==1.3.1
+gunicorn
 
 # Non-standard signals
 django-signals-ahoy
